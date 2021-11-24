@@ -1,4 +1,5 @@
 import './App.css';
+import SingleCard from './components/SingleCard.js'
 import { useState } from 'react'
 
 const cardStrings = [
@@ -8,7 +9,6 @@ const cardStrings = [
     { "part1" : "React Component" },
     { "part1" : "react-rooter-dom" },
     { "part1" : "JSON" }
-
 ]
 
 function App() {
@@ -27,21 +27,17 @@ function App() {
 
     console.log(cards,turns);
     
-
   return (
     <div className="App">
         <h1>Coding Cards</h1>
         <button onClick={shuffleCards}>New Game</button>
         <div className="card-grid">
             {cards.map(card=> (
-                <div className="card" key={card.id}>
-                <div className="front">{card.part1}</div>
-                <div className="back"></div>
-                </div>
+        <SingleCard key={card.id} card={card}/>
             ))}
         </div>
     </div>
   );
 }
 
-export default App;
+export default App
