@@ -1,6 +1,6 @@
 import './App.css';
 import SingleCard from './components/SingleCard.js'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const cardStrings = [
     { "part1" : "Express Middleware" },
@@ -10,6 +10,7 @@ const cardStrings = [
     { "part1" : "react-rooter-dom" },
     { "part1" : "JSON" }
 ]
+
 
 function App() {
     const [cards, setCards] = useState([]);
@@ -28,10 +29,33 @@ function App() {
     }
 
     //handle a choice
-    const handleChoice = (card) => {
-        choiceOne ? setChoiceTwo(card) : setChoiceOne(card) 
-
+    const handleChoice = (card, prevSelections) => {
+        choiceOne ? setChoiceTwo(card) : setChoiceOne(card) ;
     }
+
+    // reset choices and increse turn
+    const resetTurn = (prevTurns) => {
+        setChoiceOne(null);
+        setChoiceTwo(null);
+        setTurns(prevTurns = prevTurns + 1);
+    }
+   
+    // evaluate the two card choices
+    useEffect(() => {
+        if (choiceOne && choiceTwo) {
+            if (choiceOne.part1 === choiceTwo.part1 )
+            {
+                console.log('choices match');
+                resetTurn();
+            }
+            else 
+            {
+                console.log('Do not match');
+                resetTurn();
+            }
+        }
+    }, [choiceTwo, choiceOne ])
+    
     
   return (
     <div className="App">
@@ -44,7 +68,8 @@ function App() {
              card={card}
              handleChoice={handleChoice}
          />
-            ))}
+            ))
+            }
         </div>
     </div>
   );
