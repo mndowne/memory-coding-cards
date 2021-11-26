@@ -3,12 +3,18 @@ import SingleCard from './components/SingleCard.js'
 import { useEffect, useState } from 'react'
 
 const cardStrings = [
-    { "part1" : "Express Middleware" },
-    { "part1" : "Stateless Functional Component" },
-    { "part1" : "React Hook" },
-    { "part1" : "React Component" },
-    { "part1" : "react-rooter-dom" },
-    { "part1" : "JSON" }
+    { "vital" : "Express Middleware" , matched: false},
+    { "vital" : "Stateless Functional Component", matched: false  },
+    { "vital" : "React Hook", matched: false },
+    { "vital" : "React Component", matched: false },
+    { "vital" : "react-rooter-dom", matched: false },
+    { "vital" : "JSON", matched: false },
+    { "vital" : "Express Middleware" , matched: false},
+    { "vital" : "Stateless Functional Component", matched: false  },
+    { "vital" : "React Hook", matched: false },
+    { "vital" : "React Component", matched: false },
+    { "vital" : "react-rooter-dom", matched: false },
+    { "vital" : "JSON", matched: false }
 ]
 
 
@@ -20,7 +26,7 @@ function App() {
 
     //shuffle cards
     const shuffleCards = () => {
-        const shuffledCards = [...cardStrings , ...cardStrings ]
+        const shuffledCards = [...cardStrings ]
             .sort(() => Math.random() - 0.5)
             .map((card) => ({...card, id: Math.random() }));
 
@@ -43,15 +49,23 @@ function App() {
     // evaluate the two card choices
     useEffect(() => {
         if (choiceOne && choiceTwo) {
-            if (choiceOne.part1 === choiceTwo.part1 )
+            if (choiceOne.vital === choiceTwo.vital )
             {
-                console.log('choices match');
+                setCards(prevCards => {
+                    return prevCards.map(card => {
+                        if (card.vital === choiceOne.vital){
+                            return {...card, matched:true}
+                        } 
+                        else {
+                            return card
+                        }
+                    })
+                })
                 resetTurn();
             }
             else 
             {
-                console.log('Do not match');
-                resetTurn();
+                setTimeout( () => resetTurn() , 1000);
             }
         }
     }, [choiceTwo, choiceOne ])
@@ -67,6 +81,7 @@ function App() {
              key={card.id} 
              card={card}
              handleChoice={handleChoice}
+             flipped={card === choiceOne || card === choiceTwo || card.matched}
          />
             ))
             }

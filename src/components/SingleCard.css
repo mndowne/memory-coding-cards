@@ -8,3 +8,31 @@
     border: 2px solid white;
     border-redius: 6px;
 }
+
+/* front of the card - the picture */
+.card .front {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 2px solid white;
+    border-redius: 6px;
+    transform: rotateY(90deg);
+    position: absolute;
+    background-color: Black;
+    font-family: 'Ubuntu Mono', monospace;
+    transition: all ease-in 0.2s;
+}
+.flipped .front {
+    transform: rotateY(0deg);
+    transition-delay: 0.2s;
+}
+
+/* back of the card : the cover */
+.card .back {
+    transition: all ease-in 0.2s;
+    transition-delay: 0.2s;
+}
+.flipped .back {
+    transform: rotateY(90deg);
+    transition-delay: 0s;
+}
