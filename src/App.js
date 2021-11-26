@@ -1,20 +1,21 @@
 import './App.css';
 import SingleCard from './components/SingleCard.js'
 import { useEffect, useState } from 'react'
+import EndGame from './components/EndGame.js'
 
 const cardStrings = [
-    { "vital" : "Component LifeCylcle" ,src : "/img/ComponentLifeCycleVital.png" , matched: false},
-    { "vital" : "Functional Component",src : "/img/FunctionalComponentVital.png" , matched: false  },
-    { "vital" : "React Hook",src : "/img/ReactHookVital.png" , matched: false },
-    { "vital" : "Impure Function",src : "/img/ImpureFunctionVital.png" , matched: false },
-    { "vital" : "react-rooter-dom",src : "/img/ReactRouterDomVital.png" , matched: false },
-    { "vital" : "Conditional Rendering",src : "/img/ConditionalRenderingVital.png" , matched: false },
-    { "vital" : "Component LifeCylcle" ,src : "/img/ComponentLifeCycle.png" , matched: false},
-    { "vital" : "Functional Component",src : "/img/FunctionalComponent.png" , matched: false  },
-    { "vital" : "React Hook",src : "/img/ReactHook.png" , matched: false },
-    { "vital" : "Impure Function",src : "/img/ImpureFunction.png" , matched: false },
-    { "vital" : "react-rooter-dom",src : "/img/ReactRouterDom.png" , matched: false },
-    { "vital" : "Conditional Rendering",src : "/img/ConditionalRendering.png" , matched: false }
+    { "vital" : "Component LifeCylcle" ,src : "/img/ComponentLifeCycleVital.png" , matched: false, url : "https://reactjs.org/docs/state-and-lifecycle.html#gatsby-focus-wrapper"},
+    { "vital" : "Functional Component",src : "/img/FunctionalComponentVital.png" , matched: false  , url : "https://reactjs.org/docs/hooks-state.html#hooks-and-function-components"},
+    { "vital" : "React Hook",src : "/img/ReactHookVital.png" , matched: false , url : "https://reactjs.org/docs/hooks-rules.html#gatsby-focus-wrapper"},
+    { "vital" : "Impure Function",src : "/img/ImpureFunctionVital.png" , matched: false , url : "https://reactjs.org/docs/components-and-props.html#props-are-read-only"},
+    { "vital" : "react-rooter-dom",src : "/img/ReactRouterDomVital.png" , matched: false , url : "https://v5.reactrouter.com/web/guides/quick-start"},
+    { "vital" : "Conditional Rendering",src : "/img/ConditionalRenderingVital.png" , matched: false , url : "https://reactjs.org/docs/conditional-rendering.html#gatsby-focus-wrapper"},
+    { "vital" : "Component LifeCylcle" ,src : "/img/ComponentLifeCycle.png" , matched: false, url : null },
+    { "vital" : "Functional Component",src : "/img/FunctionalComponent.png" , matched: false  , url : null },
+    { "vital" : "React Hook",src : "/img/ReactHook.png" , matched: false , url : null },
+    { "vital" : "Impure Function",src : "/img/ImpureFunction.png" , matched: false , url : null },
+    { "vital" : "react-rooter-dom",src : "/img/ReactRouterDom.png" , matched: false , url : null },
+    { "vital" : "Conditional Rendering",src : "/img/ConditionalRendering.png" , matched: false , url : null }
 ]
 
 
@@ -24,6 +25,7 @@ function App() {
     const [choiceOne, setChoiceOne] = useState(null);
     const [choiceTwo, setChoiceTwo] = useState(null);
     const [disabled, setDisabled] = useState(false);
+    const [completion, setCompletion] = useState(false);
 
     //shuffle cards
     const shuffleCards = () => {
@@ -83,6 +85,17 @@ function App() {
         }
     }, [choiceTwo, choiceOne ])
     
+    // check if the game has completed
+    useEffect(() => {
+        for (let i = 0; i < cards.length ; i++){
+            if (cards[i].matched === false)
+            {
+                setCompletion(false);
+                break;
+            }
+            setCompletion(true);
+        }
+    }, [ cards ,turns ] )
     
   return (
     <div className="App">
@@ -100,6 +113,7 @@ function App() {
             ))}
         </div>
         <p>Turns: {turns}</p>
+        {completion && <EndGame cards={cards}/>}
     </div>
   );
 }
