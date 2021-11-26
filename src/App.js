@@ -3,18 +3,18 @@ import SingleCard from './components/SingleCard.js'
 import { useEffect, useState } from 'react'
 
 const cardStrings = [
-    { "vital" : "Express Middleware" , matched: false},
-    { "vital" : "Stateless Functional Component", matched: false  },
-    { "vital" : "React Hook", matched: false },
-    { "vital" : "React Component", matched: false },
-    { "vital" : "react-rooter-dom", matched: false },
-    { "vital" : "JSON", matched: false },
-    { "vital" : "Express Middleware" , matched: false},
-    { "vital" : "Stateless Functional Component", matched: false  },
-    { "vital" : "React Hook", matched: false },
-    { "vital" : "React Component", matched: false },
-    { "vital" : "react-rooter-dom", matched: false },
-    { "vital" : "JSON", matched: false }
+    { "vital" : "Component LifeCylcle" ,src : "/img/ComponentLifeCycleVital.png" , matched: false},
+    { "vital" : "Functional Component",src : "/img/FunctionalComponentVital.png" , matched: false  },
+    { "vital" : "React Hook",src : "/img/ReactHookVital.png" , matched: false },
+    { "vital" : "Impure Function",src : "/img/ImpureFunctionVital.png" , matched: false },
+    { "vital" : "react-rooter-dom",src : "/img/ReactRouterDomVital.png" , matched: false },
+    { "vital" : "Conditional Rendering",src : "/img/ConditionalRenderingVital.png" , matched: false },
+    { "vital" : "Component LifeCylcle" ,src : "/img/ComponentLifeCycle.png" , matched: false},
+    { "vital" : "Functional Component",src : "/img/FunctionalComponent.png" , matched: false  },
+    { "vital" : "React Hook",src : "/img/ReactHook.png" , matched: false },
+    { "vital" : "Impure Function",src : "/img/ImpureFunction.png" , matched: false },
+    { "vital" : "react-rooter-dom",src : "/img/ReactRouterDom.png" , matched: false },
+    { "vital" : "Conditional Rendering",src : "/img/ConditionalRendering.png" , matched: false }
 ]
 
 

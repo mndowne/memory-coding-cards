@@ -13,7 +13,11 @@ const SingleCard = ({ card , handleChoice, flipped , disabled}) => {
     return (
         <div className="card" >
             <div className={flipped ? "flipped" :"" } >
-                <div className="front">{card.vital}</div>
+                <img 
+                    className="front"
+                    src={card.src}
+                    alt="front of card"
+                />
                 <img 
                     className="back"  
                     src="./ReactLogo3.png" 
